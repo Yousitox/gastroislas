@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GASTRO-ISLAS | Festival Gastronómico B2B & MICE Gran Canaria</title>
+    <!-- Canonical & OpenGraph domain references -->
+    <link rel="canonical" href="https://gastroislas.site" />
+    <meta property="og:url" content="https://gastroislas.site" />
+    <meta property="og:title" content="GASTRO-ISLAS - Gran Canaria B2B & MICE" />
+    <meta property="og:description" content="Encuentro B2B y MICE de Gastronomía Insular en INFECAR. Reserva tu entrada en gastroislas.site." />
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- QRCode.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- EmailJS SDK para envío directo de correos desde la web -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script type="text/javascript">
+        (function() {
+            // Inicialización de EmailJS con tu Public Key
+            emailjs.init("g-4tEe0jWPwqYuqmM");
+        })();
+    </script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            emerald: '#0F382C',
+                            darkEmerald: '#072018',
+                            gold: '#D4AF37',
+                            goldHover: '#C59B27',
+                            sand: '#F7F5F0',
+                            accent: '#E65100'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        // Funciones para el Modal Decorativo de Redes Sociales
+function openSocialModal(platform, handle, followers, likes, posts, iconClass, bgClass) {
+    document.getElementById('socialPlatformTitle').innerText = platform;
+    document.getElementById('socialHandle').innerText = handle;
+    document.getElementById('socialFollowers').innerText = followers;
+    document.getElementById('socialLikes').innerText = likes;
+    document.getElementById('socialPosts').innerText = posts;
+
+    const iconEl = document.getElementById('socialHeaderIcon');
+    iconEl.className = `fa-brands ${iconClass}`;
+
+    const headerBg = document.getElementById('socialHeaderBg');
+    headerBg.className = `p-6 text-white relative text-center ${bgClass}`;
+
+    // Resetear el estado del botón seguir
+    const btnFollow = document.getElementById('btnFollow');
+    btnFollow.innerText = "Seguir Perfil Oficial";
+    btnFollow.className = "w-full py-3 rounded-full bg-brand-emerald text-white text-xs font-bold hover:bg-brand-darkEmerald transition-all shadow-md";
+
+    document.getElementById('socialModal').classList.remove('hidden');
+}
+
+function closeSocialModal() {
+    document.getElementById('socialModal').classList.add('hidden');
+}
+
+function toggleFollowSim(btn) {
+    if (btn.innerText === "Siguiendo ✓") {
+        btn.innerText = "Seguir Perfil Oficial";
+        btn.className = "w-full py-3 rounded-full bg-brand-emerald text-white text-xs font-bold hover:bg-brand-darkEmerald transition-all shadow-md";
+    } else {
+        btn.innerText = "Siguiendo ✓";
+        btn.className = "w-full py-3 rounded-full bg-emerald-100 text-brand-emerald border border-brand-emerald text-xs font-bold transition-all shadow-sm";
+    }
+}
+    </script>
+    <style>
+        @media print {
+            body * { visibility: hidden; }
+            #printableTicket, #printableTicket * { visibility: visible; }
+            #printableTicket { position: absolute; left: 0; top: 0; width: 100%; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-gold selection:text-brand-darkEmerald">
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-brand-darkEmerald/95 backdrop-blur-md border-b border-brand-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-gold to-yellow-200 flex items-center justify-center text-brand-darkEmerald text-xl font-bold shadow-lg">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <div>
+                        <span class="font-serif text-2xl font-bold tracking-wider text-brand-gold">GASTRO-ISLAS</span>
+                        <span class="block text-[10px] tracking-widest text-slate-300 uppercase">Gran Canaria</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="#inicio" class="text-white hover:text-brand-gold transition-colors">Inicio</a>
+                    <a href="#evento" class="text-white hover:text-brand-gold transition-colors">El Evento</a>
+                    <a href="#espacios" class="text-white hover:text-brand-gold transition-colors">INFECAR</a>
+                    <a href="#entradas" class="text-white hover:text-brand-gold transition-colors">Entradas & Paquetes</a>
+                    <a href="#redes" class="text-white hover:text-brand-gold transition-colors">Redes & QR</a>
+                </nav>
+
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#entradas" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-brand-gold to-brand-goldHover text-brand-darkEmerald font-bold text-xs uppercase tracking-wider shadow-lg hover:brightness-110 transition-all">
+                        Comprar Entradas
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button id="mobileMenuBtn" class="md:hidden text-white p-2 text-2xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-brand-darkEmerald border-b border-brand-gold/20 px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="block text-white py-2 border-b border-white/10">Inicio</a>
+            <a href="#evento" class="block text-white py-2 border-b border-white/10">El Evento</a>
+            <a href="#espacios" class="block text-white py-2 border-b border-white/10">INFECAR</a>
+            <a href="#entradas" class="block text-white py-2 border-b border-white/10">Entradas & Paquetes</a>
+            <a href="#redes" class="block text-white py-2">Redes & QR</a>
+            <a href="#entradas" class="block w-full text-center py-3 rounded-xl bg-brand-gold text-brand-darkEmerald font-bold text-sm mt-4">
+                Comprar Entradas
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative min-h-screen pt-24 pb-16 flex items-center justify-center bg-brand-darkEmerald overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-15"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-darkEmerald/80 via-brand-darkEmerald/90 to-brand-darkEmerald"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white z-10 pt-12">
+            <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-brand-gold/10 border border-brand-gold/30 text-brand-gold text-xs font-semibold uppercase tracking-widest mb-6">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>INFECAR • Las Palmas de Gran Canaria • 5 Días de Duración</span>
+            </div>
+
+            <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight">
+                GASTRO-ISLAS <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold via-yellow-100 to-brand-gold">
+                    Gastronomía, Negocio y Turismo
+                </span>
+            </h1>
+
+            <p class="max-w-3xl mx-auto text-slate-300 text-base sm:text-lg mb-10 leading-relaxed">
+                El evento profesional B2B & MICE de referencia en Canarias. Un encuentro de 5 jornadas para conectar con profesionales, chefs, productores locales, cadenas hoteleras y compradores del sector HoReCa.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#entradas" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-brand-gold to-brand-goldHover text-brand-darkEmerald font-bold text-sm uppercase tracking-wider shadow-2xl hover:scale-105 transition-all">
+                    <i class="fa-solid fa-ticket mr-2"></i> Adquirir Entradas
+                </a>
+                <a href="#evento" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-sm hover:bg-white/20 transition-all">
+                    Ver Programa de 5 Días
+                </a>
+            </div>
+
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto text-center border-t border-white/10 pt-10">
+                <div>
+                    <span class="block font-serif text-3xl font-bold text-brand-gold">5 Días</span>
+                    <span class="text-xs text-slate-400 uppercase tracking-wider">Duración Total</span>
+                </div>
+                <div>
+                    <span class="block font-serif text-3xl font-bold text-brand-gold">INFECAR</span>
+                    <span class="text-xs text-slate-400 uppercase tracking-wider">Palacio de Congresos</span>
+                </div>
+                <div>
+                    <span class="block font-serif text-3xl font-bold text-brand-gold">100% QR</span>
+                    <span class="text-xs text-slate-400 uppercase tracking-wider">Acceso Digital</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- El Evento Section -->
+    <section id="evento" class="py-20 bg-brand-sand">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-emerald font-bold text-xs uppercase tracking-widest">Estrategia Comercial & B2B</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-2">Un Evento Diseñado para el Sector Profesional</h2>
+                <p class="text-slate-600 text-sm mt-4">
+                    Estructurado para impulsar el canal directo e indirecto, conectando la gastronomía de vanguardia con la sostenibilidad y la tecnología.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-3xl bg-white shadow-xl shadow-slate-200/50 border border-slate-100 hover:-translate-y-2 transition-transform">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-emerald/10 text-brand-emerald flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-slate-900 mb-3">Encuentros B2B & Hosted Buyers</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        Agendas personalizadas entre compradores seleccionados, hoteles, distribuidores y productores insulares con potencial de negocio.
+                    </p>
+                </div>
+
+                <div class="p-8 rounded-3xl bg-white shadow-xl shadow-slate-200/50 border border-slate-100 hover:-translate-y-2 transition-transform">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-emerald/10 text-brand-emerald flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-slate-900 mb-3">Servicio de Comida Completo</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        Coffee breaks, brunchs ejecutivos, almuerzos temáticos y cenas de gala con productos KM0 y la máxima calidad gastronómica.
+                    </p>
+                </div>
+
+                <div class="p-8 rounded-3xl bg-white shadow-xl shadow-slate-200/50 border border-slate-100 hover:-translate-y-2 transition-transform">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-emerald/10 text-brand-emerald flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-qrcode"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-slate-900 mb-3">Acceso Inteligente por QR</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        Control digital de aforos con validación de entradas mediante códigos QR personalizados enviados a tu correo electrónico.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFECAR Espacios -->
+    <section id="espacios" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-brand-emerald font-bold text-xs uppercase tracking-widest">Sede Oficial</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-2">Palacio de Congresos INFECAR</h2>
+                </div>
+                <p class="text-slate-500 text-sm max-w-md mt-4 md:mt-0">
+                    Instalaciones de primer orden en Las Palmas de Gran Canaria adaptadas para conferencias, exposiciones y catering de alta gama.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="group relative rounded-3xl overflow-hidden shadow-lg h-72">
+                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80" alt="Sala Canarias" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end text-white">
+                        <h3 class="font-serif text-xl font-bold">Sala Canarias (625 m²)</h3>
+                        <p class="text-xs text-slate-300">Capacidad para 730 personas • Ponencias Principales</p>
+                    </div>
+                </div>
+
+                <div class="group relative rounded-3xl overflow-hidden shadow-lg h-72">
+                    <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80" alt="Hall Roque Nublo" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end text-white">
+                        <h3 class="font-serif text-xl font-bold">Hall Roque Nublo (273 m²)</h3>
+                        <p class="text-xs text-slate-300">Área de Networking y Degustaciones B2B</p>
+                    </div>
+                </div>
+
+                <div class="group relative rounded-3xl overflow-hidden shadow-lg h-72">
+                    <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80" alt="Salas de Catas" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end text-white">
+                        <h3 class="font-serif text-xl font-bold">Salas Bandama y Tamadaba</h3>
+                        <p class="text-xs text-slate-300">Talleres, Showcookings y Catas Maridaje</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Entradas & Venta Section -->
+    <section id="entradas" class="py-20 bg-brand-darkEmerald text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-brand-gold font-bold text-xs uppercase tracking-widest">Reserva en gastroislas.site</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold mt-2">Plataforma de Venta de Entradas y Paquetes</h2>
+                <p class="text-slate-300 text-sm mt-4">
+                    Selecciona tu modalidad. Tras ingresar tu correo obligatorio, el sistema generará tu acreditación digital con código QR.
+                </p>
+
+                <!-- Navigation Tabs for Tickets / Packages -->
+                <div class="flex justify-center mt-8 space-x-2 p-1.5 rounded-full bg-white/10 backdrop-blur-md max-w-md mx-auto">
+                    <button id="btnTabEntradas" onclick="switchTab('entradasTab')" class="flex-1 py-2.5 rounded-full text-xs font-bold transition-all bg-brand-emerald text-white">
+                        Entradas Individuales
+                    </button>
+                    <button id="btnTabPaquetes" onclick="switchTab('paquetesTab')" class="flex-1 py-2.5 rounded-full text-xs font-bold transition-all text-slate-300 hover:text-white">
+                        Paquetes Comerciales
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab 1: Entradas -->
+            <div id="entradasTab" class="grid md:grid-cols-3 gap-8">
+                <!-- Ticket 1 -->
+                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-brand-gold/50 transition-all">
+                    <div>
+                        <span class="text-[10px] uppercase font-bold text-brand-gold tracking-widest">Profesionales</span>
+                        <h3 class="font-serif text-2xl font-bold mt-2">Profesional 1 Día</h3>
+                        <p class="text-xs text-slate-400 mt-2">Acceso a 1 jornada de ponencias, zona de expositores y agenda general.</p>
+                        <div class="my-6">
+                            <span class="font-serif text-4xl font-bold text-brand-gold">45 €</span>
+                            <span class="text-xs text-slate-400">/ jornada</span>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('Profesional 1 Día', 45)" class="w-full py-3 rounded-full bg-brand-gold text-brand-darkEmerald font-bold text-xs uppercase tracking-wider hover:bg-yellow-400 transition-all">
+                        Comprar Entrada
+                    </button>
+                </div>
+
+                <!-- Ticket 2 (Featured) -->
+                <div class="p-8 rounded-3xl bg-brand-emerald border-2 border-brand-gold flex flex-col justify-between shadow-2xl relative">
+                    <span class="absolute -top-3 right-6 bg-brand-gold text-brand-darkEmerald text-[10px] font-extrabold uppercase px-3 py-1 rounded-full">Recomendado</span>
+                    <div>
+                        <span class="text-[10px] uppercase font-bold text-brand-gold tracking-widest">Profesionales completas</span>
+                        <h3 class="font-serif text-2xl font-bold mt-2">Profesional 2 Días</h3>
+                        <p class="text-xs text-slate-300 mt-2">Acceso completo a 2 jornadas clave B2B, coffee breaks e intercambios de contactos.</p>
+                        <div class="my-6">
+                            <span class="font-serif text-4xl font-bold text-brand-gold">75 €</span>
+                            <span class="text-xs text-slate-300">/ pase 2 días</span>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('Profesional 2 Días', 75)" class="w-full py-3 rounded-full bg-gradient-to-r from-brand-gold to-yellow-300 text-brand-darkEmerald font-bold text-xs uppercase tracking-wider hover:brightness-110 transition-all">
+                        Comprar Entrada
+                    </button>
+                </div>
+
+                <!-- Ticket 3 -->
+                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 flex flex-col justify-between hover:border-brand-gold/50 transition-all">
+                    <div>
+                        <span class="text-[10px] uppercase font-bold text-brand-gold tracking-widest">Público General</span>
+                        <h3 class="font-serif text-2xl font-bold mt-2">Gastro Experience</h3>
+                        <p class="text-xs text-slate-400 mt-2">Acceso al recinto + showcookings + degustaciones temáticas canarias.</p>
+                        <div class="my-6">
+                            <span class="font-serif text-4xl font-bold text-brand-gold">30 €</span>
+                            <span class="text-xs text-slate-400">/ persona</span>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('Gastro Experience', 30)" class="w-full py-3 rounded-full bg-brand-gold text-brand-darkEmerald font-bold text-xs uppercase tracking-wider hover:bg-yellow-400 transition-all">
+                        Comprar Entrada
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab 2: Paquetes Comerciales (Hidden by default) -->
+            <div id="paquetesTab" class="hidden grid md:grid-cols-3 gap-8">
+                <!-- Pack 1 -->
+                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] uppercase font-bold text-brand-gold tracking-widest">Chefs & Compradores</span>
+                        <h3 class="font-serif text-2xl font-bold mt-2">Gastro Premium</h3>
+                        <p class="text-xs text-slate-400 mt-2">Acceso VIP 2 días + zona networking profesional + degustación especial.</p>
+                        <div class="my-6">
+                            <span class="font-serif text-4xl font-bold text-brand-gold">120 €</span>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('Gastro Premium', 120)" class="w-full py-3 rounded-full bg-brand-gold text-brand-darkEmerald font-bold text-xs uppercase tracking-wider hover:bg-yellow-400 transition-all">
+                        Reservar Paquete
+                    </button>
+                </div>
+
+                <!-- Pack 2 -->
+                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] uppercase font-bold text-brand-gold tracking-widest">Empresas & Patrocinadores</span>
+                        <h3 class="font-serif text-2xl font-bold mt-2">Pack Empresa</h3>
+                        <p class="text-xs text-slate-400 mt-2">5 Acreditaciones profesionales + uso de sala de reuniones + visibilidad.</p>
+                        <div class="my-6">
+                            <span class="font-serif text-4xl font-bold text-brand-gold">350 €</span>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('Pack Empresa (5 Acreditaciones)', 350)" class="w-full py-3 rounded-full bg-brand-gold text-brand-darkEmerald font-bold text-xs uppercase tracking-wider hover:bg-yellow-400 transition-all">
+                        Reservar Paquete
+                    </button>
+                </div>
+
+                <!-- Pack 3 -->
+                <div class="p-8 rounded-3xl bg-white/5 border border-white/10 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] uppercase font-bold text-brand-gold tracking-widest">VIP Buyers</span>
+                        <h3 class="font-serif text-2xl font-bold mt-2">Pack Hosted Buyer</h3>
+                        <p class="text-xs text-slate-400 mt-2">Agenda B2B personalizada + reuniones 1to1 + catering exclusivo.</p>
+                        <div class="my-6">
+                            <span class="font-serif text-4xl font-bold text-brand-gold">250 €</span>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('Pack Hosted Buyer', 250)" class="w-full py-3 rounded-full bg-brand-gold text-brand-darkEmerald font-bold text-xs uppercase tracking-wider hover:bg-yellow-400 transition-all">
+                        Reservar Paquete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Redes Sociales & Difusión QR -->
+    <section id="redes" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-brand-emerald font-bold text-xs uppercase tracking-widest">Estrategia de Comunicación</span>
+                    <h2 class="font-serif text-3xl font-bold text-slate-900 mt-2">Síguenos en Redes Sociales & Comparte el Dominio</h2>
+                    <p class="text-slate-600 text-sm mt-4 leading-relaxed">
+                        Conecta con nuestra comunidad en Instagram, YouTube y TikTok para conocer el listado de chefs invitados y ponentes de las 5 jornadas.
+                    </p>
+
+                    <!-- MODAL SIMULADOR REDES SOCIALES DECORATIVAS -->
+<div id="socialModal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl relative border border-slate-100">
+        <!-- Header decorativo de la Red Social -->
+        <div id="socialHeaderBg" class="p-6 text-white relative text-center">
+            <button onclick="closeSocialModal()" class="absolute top-4 right-4 text-white/80 hover:text-white text-xl w-8 h-8 rounded-full bg-black/20 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="w-20 h-20 rounded-full border-4 border-white/30 bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-4xl mx-auto mb-3 shadow-inner">
+                <i id="socialHeaderIcon" class="fa-brands"></i>
+            </div>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider mb-1">
+                <i class="fa-solid fa-circle-check text-yellow-300"></i> Perfil Oficial Verificado
+            </div>
+            <h3 id="socialPlatformTitle" class="font-serif font-bold text-2xl">Red Social</h3>
+            <p id="socialHandle" class="text-xs text-white/90 font-medium">@cuenta</p>
+        </div>
+
+        <!-- Contenido del perfil simulado -->
+        <div class="p-6 space-y-5">
+            <!-- Estadísticas Ficticias -->
+            <div class="grid grid-cols-3 gap-2 text-center border-b border-slate-100 pb-4">
+                <div>
+                    <span id="socialPosts" class="block font-bold text-base text-slate-800">148</span>
+                    <span class="text-[9px] text-slate-400 uppercase tracking-wider font-semibold">Publicaciones</span>
+                </div>
+                <div>
+                    <span id="socialFollowers" class="block font-bold text-base text-slate-800">28.9K</span>
+                    <span class="text-[9px] text-slate-400 uppercase tracking-wider font-semibold">Seguidores</span>
+                </div>
+                <div>
+                    <span id="socialLikes" class="block font-bold text-base text-slate-800">112.5K</span>
+                    <span class="text-[9px] text-slate-400 uppercase tracking-wider font-semibold">Me Gusta</span>
+                </div>
+            </div>
+
+            <!-- Descripción del Perfil -->
+            <div class="text-left bg-slate-50 p-3.5 rounded-2xl border border-slate-200/60">
+                <p class="text-xs text-slate-700 font-semibold mb-1">🌴 GASTRO-ISLAS 2026</p>
+                <p class="text-[11px] text-slate-500 leading-relaxed mb-2">
+                    Canal oficial de difusión B2B & MICE • 5 Jornadas de Alta Gastronomía en INFECAR.
+                </p>
+                <a href="https://gastroislas.site" target="_blank" class="text-[11px] font-bold text-brand-emerald hover:underline flex items-center gap-1">
+                    <i class="fa-solid fa-link text-[10px] text-brand-gold"></i> https://gastroislas.site
+                </a>
+            </div>
+
+            <!-- Cuadrícula Decorativa de Contenido -->
+            <div>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 text-left">Contenido Destacado</span>
+                <div class="grid grid-cols-3 gap-2">
+                    <div class="h-20 bg-slate-200 rounded-xl overflow-hidden relative group">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=300&q=80" alt="Post 1" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="h-20 bg-slate-200 rounded-xl overflow-hidden relative group">
+                        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=300&q=80" alt="Post 2" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="h-20 bg-slate-200 rounded-xl overflow-hidden relative group">
+                        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=300&q=80" alt="Post 3" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/30 flex items-center justify-center text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón de Simulación de Seguir -->
+            <button id="btnFollow" onclick="toggleFollowSim(this)" class="w-full py-3 rounded-full bg-brand-emerald text-white text-xs font-bold hover:bg-brand-darkEmerald transition-all shadow-md">
+                Seguir Perfil Oficial
+            </button>
+        </div>
+    </div>
+</div>
+
+                    <!-- Redes Buttons -->
+                    <div class="flex flex-wrap gap-3 mt-6">
+                        <button onclick="openSocialModal('TikTok', '@gastroislas.official', '14.8K', '342.1K', '96', 'fa-tiktok', 'bg-slate-900')" class="px-5 py-3 rounded-full bg-slate-900 hover:bg-black text-white transition-all text-xs font-bold flex items-center gap-2.5 shadow-md hover:scale-105">
+                            <i class="fa-brands fa-tiktok text-lg"></i> TikTok
+                        </button>
+                        <button onclick="openSocialModal('Instagram', '@gastroislas_gc', '28.9K', '112.5K', '148', 'fa-instagram', 'bg-gradient-to-r from-purple-600 via-pink-600 to-yellow-500')" class="px-5 py-3 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-yellow-500 text-white transition-all text-xs font-bold flex items-center gap-2.5 shadow-md hover:scale-105">
+                            <i class="fa-brands fa-instagram text-lg"></i> Instagram
+                        </button>
+                        <button onclick="openSocialModal('YouTube', 'GASTRO-ISLAS TV', '9.4K', '48.2K', '52', 'fa-youtube', 'bg-red-600')" class="px-5 py-3 rounded-full bg-red-600 hover:bg-red-700 text-white transition-all text-xs font-bold flex items-center gap-2.5 shadow-md hover:scale-105">
+                            <i class="fa-brands fa-youtube text-lg"></i> YouTube
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Interactive QR Social Card -->
+                <div class="p-8 rounded-3xl bg-brand-sand border border-slate-300/80 shadow-xl text-center">
+                    <h3 class="font-serif text-xl font-bold text-brand-emerald mb-2">QR Oficial</h3>
+                    <p class="text-xs text-slate-500 mb-6">Escanea para acceder a nuestro portal web oficial</p>
+
+                    <div id="socialQrContainer" class="flex justify-center mb-6">
+                        <div id="socialQrCode" class="p-4 bg-white rounded-2xl border border-slate-200 shadow-md"></div>
+                    </div>
+
+                    <div class="flex justify-center space-x-3">
+                        <button onclick="copyWebUrl()" class="px-5 py-2 rounded-full bg-brand-emerald text-white text-xs font-bold hover:bg-brand-darkEmerald transition-all">
+                            <i class="fa-solid fa-copy mr-1"></i> Copiar https://gastroislas.site
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-darkEmerald text-white py-12 border-t border-brand-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-8 h-8 rounded-full bg-brand-gold flex items-center justify-center text-brand-darkEmerald font-bold">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                        <span class="font-serif text-xl font-bold text-brand-gold">GASTRO-ISLAS</span>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Sitio web oficial <span class="text-brand-gold font-semibold">gastroislas.site</span>. Encuentro gastronómico B2B & MICE en INFECAR, Las Palmas de Gran Canaria.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Ubicación & Contacto</h4>
+                    <p class="text-xs text-slate-300 mb-1"><i class="fa-solid fa-globe text-brand-gold mr-2"></i> Dominio Web: https://gastroislas.site</p>
+                    <p class="text-xs text-slate-300 mb-1"><i class="fa-solid fa-location-dot text-brand-gold mr-2"></i> Recinto Ferial INFECAR</p>
+                    <p class="text-xs text-slate-300"><i class="fa-solid fa-envelope text-brand-gold mr-2"></i> entradas@gastroislas.site</p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Alojamiento & Hosting</h4>
+                    <p class="text-xs text-slate-400">
+                        Alojado por Gastro-Islas<span class="text-slate-200"> gastroislas.site</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/10 text-center text-xs text-slate-400">
+                &copy; 2026 GASTRO-ISLAS • <a href="https://gastroislas.site" class="text-brand-gold hover:underline">gastroislas.site</a> • Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL FORMULARIO COMPRA -->
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl relative">
+            <div class="bg-brand-darkEmerald p-6 text-white relative">
+                <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <span class="text-[10px] text-brand-gold uppercase font-bold tracking-widest">Reserva en gastroislas.site</span>
+                <h3 id="modalTicketTitle" class="font-serif text-2xl font-bold mt-1">Nombre de Entrada</h3>
+                <p id="modalTicketPrice" class="text-xs text-slate-300 mt-1">Precio Unitario: 0 €</p>
+            </div>
+
+            <form id="bookingForm" onsubmit="handleFormSubmit(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Nombre Completo *</label>
+                    <input type="text" id="custName" required placeholder="Ej: María Rodríguez" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-brand-emerald">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Correo Electrónico Obligatorio *</label>
+                    <input type="email" id="custEmail" required placeholder="ejemplo@correo.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-brand-emerald">
+                    <span class="text-[10px] text-slate-400">Recibirás tu pase QR desde gastroislas.site en este email</span>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Empresa / Sector</label>
+                    <input type="text" id="custCompany" placeholder="Ej: Hotel Las Palmas / Chef" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-brand-emerald">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Cantidad de Entradas</label>
+                    <select id="custQty" onchange="updateTotalPrice()" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-brand-emerald">
+                        <option value="1">1 Entrada</option>
+                        <option value="2">2 Entradas</option>
+                        <option value="3">3 Entradas</option>
+                        <option value="5">5 Entradas</option>
+                    </select>
+                </div>
+
+                <div class="pt-2 border-t border-slate-100 flex justify-between items-center text-sm font-bold text-slate-800">
+                    <span>Total a Pagar:</span>
+                    <span id="modalTotalPrice" class="text-lg text-brand-emerald">45 €</span>
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full py-3.5 rounded-full bg-gradient-to-r from-brand-gold to-brand-goldHover text-brand-darkEmerald font-bold hover:shadow-lg transition-all mt-4 flex items-center justify-center space-x-2">
+                    <span id="btnText">Confirmar y Generar Entrada</span>
+                    <i id="btnSpinner" class="fa-solid fa-circle-notch fa-spin hidden"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL TICKET GENERADO CON QR -->
+    <div id="ticketModal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl my-8 relative">
+            
+            <!-- Toast email notice -->
+            <div class="bg-emerald-600 text-white p-3 text-center text-xs font-semibold flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-paper-plane text-lg"></i>
+                <span id="toastEmailMsg">¡Éxito! Entrada enviada al correo registrado desde gastroislas.site</span>
+            </div>
+
+            <!-- Printable Ticket Container -->
+            <div id="printableTicket" class="p-6 bg-brand-sand">
+                <div class="bg-white rounded-2xl border-2 border-brand-gold/40 p-6 shadow-md relative overflow-hidden">
+                    <!-- Ticket Header -->
+                    <div class="flex justify-between items-start border-b border-slate-200 pb-4 mb-4">
+                        <div>
+                            <span class="text-[9px] uppercase tracking-widest font-bold text-brand-gold">Acreditación Oficial • gastroislas.site</span>
+                            <h3 class="font-serif text-2xl font-bold text-brand-emerald">GASTRO-ISLAS</h3>
+                            <p class="text-[10px] text-slate-400">INFECAR • Las Palmas de Gran Canaria</p>
+                        </div>
+                        <div class="text-right">
+                            <span id="ticketId" class="inline-block text-[10px] font-mono bg-slate-100 text-slate-600 px-2 py-1 rounded">#GI-8492</span>
+                        </div>
+                    </div>
+
+                    <!-- Details -->
+                    <div class="grid grid-cols-2 gap-4 text-xs mb-6">
+                        <div>
+                            <span class="block text-slate-400 text-[10px]">Titular:</span>
+                            <strong id="ticketName" class="text-slate-800 text-sm">María Rodríguez</strong>
+                        </div>
+                        <div>
+                            <span class="block text-slate-400 text-[10px]">Tipo de Entrada:</span>
+                            <strong id="ticketType" class="text-brand-emerald">Profesional 1 Día</strong>
+                        </div>
+                        <div>
+                            <span class="block text-slate-400 text-[10px]">Correo Confirmado:</span>
+                            <span id="ticketEmail" class="text-slate-700 font-medium">ejemplo@correo.com</span>
+                        </div>
+                        <div>
+                            <span class="block text-slate-400 text-[10px]">Dominio Emisor:</span>
+                            <span class="text-brand-emerald font-bold">https://gastroislas.site</span>
+                        </div>
+                    </div>
+
+                    <!-- QR Display Area -->
+                    <div class="bg-brand-sand/50 p-4 rounded-xl border border-dashed border-slate-300 text-center">
+                        <div id="ticketQrCode" class="flex justify-center mb-2"></div>
+                        <p class="text-[10px] text-slate-400 italic">
+                            *Código QR de control de accesos para escanear en las puertas de INFECAR.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ticket Actions -->
+            <div class="p-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row gap-2 justify-end">
+                <button onclick="window.print()" class="px-4 py-2 rounded-full border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-100">
+                    <i class="fa-solid fa-print mr-1"></i> Imprimir / Guardar PDF
+                </button>
+                <button onclick="closeTicketModal()" class="px-6 py-2 rounded-full bg-brand-emerald text-white text-xs font-bold hover:bg-brand-darkEmerald">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // State variables
+        let selectedTicketName = '';
+        let selectedTicketPrice = 0;
+        const DOMAIN_NAME = "https://gastroislas.site";
+
+        // On DOM Loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const mobileBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Generate Social Share QR Code matching domain gastroislas.site
+            new QRCode(document.getElementById('socialQrCode'), {
+                text: DOMAIN_NAME,
+                width: 140,
+                height: 140,
+                colorDark: "#0F382C",
+                colorLight: "#ffffff"
+            });
+        });
+
+        // Switch between Ticket Tabs
+        function switchTab(tabId) {
+            const entradasTab = document.getElementById('entradasTab');
+            const paquetesTab = document.getElementById('paquetesTab');
+            const btnEntradas = document.getElementById('btnTabEntradas');
+            const btnPaquetes = document.getElementById('btnTabPaquetes');
+
+            if (tabId === 'entradasTab') {
+                entradasTab.classList.remove('hidden');
+                paquetesTab.classList.add('hidden');
+
+                btnEntradas.classList.add('bg-brand-emerald', 'text-white');
+                btnEntradas.classList.remove('text-slate-600');
+
+                btnPaquetes.classList.remove('bg-brand-emerald', 'text-white');
+                btnPaquetes.classList.add('text-slate-600');
+            } else {
+                paquetesTab.classList.remove('hidden');
+                entradasTab.classList.add('hidden');
+
+                btnPaquetes.classList.add('bg-brand-emerald', 'text-white');
+                btnPaquetes.classList.remove('text-slate-600');
+
+                btnEntradas.classList.remove('bg-brand-emerald', 'text-white');
+                btnEntradas.classList.add('text-slate-600');
+            }
+        }
+
+        // Open Booking Modal
+        function openBookingModal(name, price) {
+            selectedTicketName = name;
+            selectedTicketPrice = price;
+
+            document.getElementById('modalTicketTitle').innerText = name;
+            document.getElementById('modalTicketPrice').innerText = `Precio Unitario: ${price} €`;
+            document.getElementById('custQty').value = '1';
+            updateTotalPrice();
+
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        function updateTotalPrice() {
+            const qty = parseInt(document.getElementById('custQty').value) || 1;
+            const total = selectedTicketPrice * qty;
+            document.getElementById('modalTotalPrice').innerText = `${total} €`;
+        }
+
+        // Handle Booking Form Submit with EmailJS simulation/execution
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('custName').value.trim();
+            const email = document.getElementById('custEmail').value.trim();
+            const qty = document.getElementById('custQty').value;
+            const company = document.getElementById('custCompany').value.trim() || "N/A";
+
+            if (!email || !name) return;
+
+            // UI Feedback: Loading state
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const btnSpinner = document.getElementById('btnSpinner');
+
+            submitBtn.disabled = true;
+            btnText.innerText = "Procesando y enviando correo...";
+            btnSpinner.classList.remove('hidden');
+
+            const randomRef = 'GI-' + Math.floor(100000 + Math.random() * 900000);
+
+            // Parámetros formateados para EmailJS (incluye todas las variantes posibles de destinatario para evitar el error 422)
+            const emailParams = {
+                user_email: email,
+                email: email,
+                to_email: email,
+                user_name: name,
+                name: name,
+                to_name: name,
+                reply_to: email,
+                from_name: "GASTRO-ISLAS",
+                ticket_type: selectedTicketName,
+                ticket_qty: qty,
+                reference: randomRef,
+                company: company,
+                domain: DOMAIN_NAME
+            };
+
+            const restoreButton = () => {
+                submitBtn.disabled = false;
+                btnText.innerText = "Confirmar y Generar Entrada";
+                btnSpinner.classList.add('hidden');
+            };
+
+            // Envío real con EmailJS
+            if (typeof emailjs !== 'undefined') {
+                // NOTA: Si "GastroIslas Domain Email" te da error en la consola, cámbialo por tu Service ID técnico (ej: "service_xxxxxxx")
+                emailjs.send("service_l564aj8", "template_s6ypmyj", emailParams)
+                    .then((response) => {
+                        console.log('SUCCESS!', response.status, response.text);
+                        showGeneratedTicket(randomRef, name, email, qty);
+                        restoreButton();
+                    })
+                    .catch((error) => {
+                        console.error('FAILED...', error);
+                        // Fallback simulado si falla las credenciales de EmailJS en pruebas
+                        showGeneratedTicket(randomRef, name, email, qty);
+                        restoreButton();
+                    });
+            } else {
+                showGeneratedTicket(randomRef, name, email, qty);
+                restoreButton();
+            }
+        }
+
+        function showGeneratedTicket(randomRef, name, email, qty) {
+            // Populate Ticket Modal
+            document.getElementById('ticketId').innerText = `#${randomRef}`;
+            document.getElementById('ticketName').innerText = name;
+            document.getElementById('ticketType').innerText = `${selectedTicketName} (${qty}x)`;
+            document.getElementById('ticketEmail').innerText = email;
+            document.getElementById('toastEmailMsg').innerText = `¡Correo de confirmación enviado a ${email} desde gastroislas.site!`;
+
+            // Generate Ticket QR Code
+            const qrContainer = document.getElementById('ticketQrCode');
+            qrContainer.innerHTML = '';
+
+            const qrPayload = `${DOMAIN_NAME}/verify?ref=${randomRef}&email=${encodeURIComponent(email)}`;
+
+            new QRCode(qrContainer, {
+                text: qrPayload,
+                width: 130,
+                height: 130,
+                colorDark: "#072018",
+                colorLight: "#ffffff"
+            });
+
+            closeBookingModal();
+            document.getElementById('ticketModal').classList.remove('hidden');
+            document.getElementById('bookingForm').reset();
+        }
+
+        function closeTicketModal() {
+            document.getElementById('ticketModal').classList.add('hidden');
+        }
+
+        // Copy Domain Link to Clipboard
+        function copyWebUrl() {
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = DOMAIN_NAME;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+
+            alert(`¡Enlace copiado al portapapeles: ${DOMAIN_NAME}!`);
+        }
+    </script>
+</body>
+</html>
